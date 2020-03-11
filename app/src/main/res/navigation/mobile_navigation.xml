@@ -3,36 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/nav_home">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.Financial.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.financial.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/nav_expenses"
+        android:name="com.example.Financial.expenses"
+        android:label="fragment_expenses"
+        tools:layout="@layout/fragment_expenses" />
+    <fragment
+        android:id="@+id/nav_income"
+        android:name="com.example.Financial.income"
+        android:label="fragment_income"
+        tools:layout="@layout/fragment_income" />
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.Financial.home"
+        android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/navigation_expenditure"
-        android:name="com.example.financial.ui.notifications.NotificationsFragment"
-        android:label="@string/title_expenditure"
-        tools:layout="@layout/fragment_expenditure" />
-
+        android:id="@+id/nav_deposit"
+        android:name="com.example.Financial.deposit"
+        android:label="fragment_deposit"
+        tools:layout="@layout/fragment_deposit" />
     <fragment
-        android:id="@+id/navigation_currency"
-        android:name="com.example.financial.ui.dashboard.DashboardFragment"
-        android:label="@string/title_currency"
-        tools:layout="@layout/fragment_currency" />
-
+        android:id="@+id/nav_exchange"
+        android:name="com.example.Financial.exchange"
+        android:label="fragment_exchange"
+        tools:layout="@layout/fragment_exchange" />
     <fragment
-        android:id="@+id/navigation_stock"
-        android:name="com.example.financial.ui.notifications.NotificationsFragment"
-        android:label="@string/title_stock"
+        android:id="@+id/nav_stock"
+        android:name="com.example.Financial.stock"
+        android:label="fragment_stock"
         tools:layout="@layout/fragment_stock" />
-
     <fragment
-        android:id="@+id/navigation_transfer"
-        android:name="com.example.financial.ui.notifications.NotificationsFragment"
-        android:label="@string/title_transfer"
-        tools:layout="@layout/fragment_transfer" />
+        android:id="@+id/nav_fund"
+        android:name="com.example.Financial.fund"
+        android:label="fragment_fund"
+        tools:layout="@layout/fragment_fund" />
+    <fragment
+        android:id="@+id/nav_bond"
+        android:name="com.example.Financial.bond"
+        android:label="fragment_bond"
+        tools:layout="@layout/fragment_bond" />
+    <fragment
+        android:id="@+id/nav_account_receivable"
+        android:name="com.example.Financial.account_receivable"
+        android:label="fragment_account_receivable"
+        tools:layout="@layout/fragment_account_receivable" />
+    <fragment
+        android:id="@+id/nav_account_payable"
+        android:name="com.example.Financial.account_payable"
+        android:label="fragment_account_payable"
+        tools:layout="@layout/fragment_account_payable" />
 
 </navigation>
