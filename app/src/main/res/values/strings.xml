@@ -24,7 +24,7 @@
     <string name="menu_deposit">Deposit</string>
     <string name="menu_fund">Fund</string>
     <string name="menu_bond">Bond</string>
-    <string name="menu_accountReceivable">AR</string>
-    <string name="menu_accountPayable">AP</string>
+    <string name="menu_accountReceivable">Account Receivable</string>
+    <string name="menu_accountPayable">Account Payable</string>
     <string name="menu_setting">Setting</string>
 </resources>

@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_menu_camera"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/item_home" />
 
     <item
         android:id="@+id/nav_expenses"
-        android:icon="@drawable/ic_menu_camera"
+        android:icon="@drawable/ic_orion_wallet"
         android:title="@string/item_expenses" />
 
     <item
         android:id="@+id/nav_income"
-        android:icon="@drawable/ic_menu_manage"
+        android:icon="@drawable/ic_orion_money_bag"
         android:title="@string/item_income" />
 
 </menu>

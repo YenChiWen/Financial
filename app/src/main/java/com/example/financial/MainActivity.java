@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onNavigationItemSelected: " + item.getTitle());
 
             mNavController.navigate(item.getItemId());
-
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
 

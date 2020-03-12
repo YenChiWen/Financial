@@ -3,65 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-<!--    <group android:checkableBehavior="single">-->
-<!--        <item-->
-<!--            android:id="@+id/nav_home"-->
-<!--            android:icon="@drawable/ic_menu_camera"-->
-<!--            android:title="@string/menu_home" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_gallery"-->
-<!--            android:icon="@drawable/ic_menu_gallery"-->
-<!--            android:title="@string/menu_gallery" />-->
-<!--        <item-->
-<!--            android:id="@+id/nav_slideshow"-->
-<!--            android:icon="@drawable/ic_menu_slideshow"-->
-<!--            android:title="@string/menu_slideshow" />-->
-<!--    </group>-->
-
     <item android:title="Assets">
         <menu>
             <item
                 android:id="@+id/nav_deposit"
-                android:icon="@drawable/ic_menu_manage"
+                android:icon="@drawable/ic_orion_money_box"
                 android:title="@string/menu_deposit" />
             <item
                 android:id="@+id/nav_exchange"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_foreign_currency_exchange"
                 android:title="@string/menu_exchange" />
             <item
                 android:id="@+id/nav_stock"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_orion_sales_performance_up"
                 android:title="@string/menu_stock" />
 
             <item
                 android:id="@+id/nav_fund"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_orion_coins"
                 android:title="@string/menu_fund" />
 
             <item
                 android:id="@+id/nav_bond"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_orion_invoice"
                 android:title="@string/menu_bond" />
 
             <item
                 android:id="@+id/nav_account_receivable"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_orion_credit_card"
                 android:title="@string/menu_accountReceivable" />
 
             <item
                 android:id="@+id/nav_account_payable"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_orion_secure_payment"
                 android:title="@string/menu_accountPayable" />
         </menu>
     </item>
 
-    <item android:title="Setting">
-        <menu>
-            <item
-                android:id="@+id/nav_setting"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="@string/menu_setting" />
-        </menu>
-    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/menu_setting" />
+    </group>
 
 </menu>
