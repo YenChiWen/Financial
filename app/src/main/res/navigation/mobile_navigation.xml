@@ -61,5 +61,10 @@
         android:name="com.example.Financial.account_payable"
         android:label="fragment_account_payable"
         tools:layout="@layout/fragment_account_payable" />
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.Financial.setting"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 
 </navigation>

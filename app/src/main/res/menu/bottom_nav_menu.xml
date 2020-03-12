@@ -5,16 +5,16 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/item_home" />
+        android:title="@string/menu_home" />
 
     <item
         android:id="@+id/nav_expenses"
         android:icon="@drawable/ic_orion_wallet"
-        android:title="@string/item_expenses" />
+        android:title="@string/menu_expenses" />
 
     <item
         android:id="@+id/nav_income"
         android:icon="@drawable/ic_orion_money_bag"
-        android:title="@string/item_income" />
+        android:title="@string/menu_income" />
 
 </menu>

@@ -3,6 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/menu_setting" />
+    </group>
+
+    <item android:title="Cash Flow">
+        <menu>
+            <item
+                android:id="@+id/nav_expenses"
+                android:icon="@drawable/ic_orion_wallet"
+                android:title="@string/menu_expenses" />
+
+            <item
+                android:id="@+id/nav_income"
+                android:icon="@drawable/ic_orion_money_bag"
+                android:title="@string/menu_income" />
+        </menu>
+    </item>
+
     <item android:title="Assets">
         <menu>
             <item
@@ -39,12 +64,5 @@
                 android:title="@string/menu_accountPayable" />
         </menu>
     </item>
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_setting"
-            android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/menu_setting" />
-    </group>
 
 </menu>
