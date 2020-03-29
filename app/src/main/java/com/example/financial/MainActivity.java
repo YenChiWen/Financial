@@ -56,7 +56,14 @@ public class MainActivity extends AppCompatActivity {
         mNavigationView = findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
 
-//        mNavController.navigate(R.id.nav_home);
+        mBottomNavigationView.setSelectedItemId(mBottomNavigationView.getSelectedItemId());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
@@ -68,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             checkBottomItemExist(item);
 
             mNavController.navigate(item.getItemId());
+            setTitle(item.getTitle());
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
 
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "bottomNavigationItemSelectedListener: " + item.getTitle());
 
             mBottomNavigationView.getMenu().setGroupCheckable(0, true, true);
+            setTitle(item.getTitle());
             mNavController.navigate(item.getItemId());
             item.setChecked(true);
 
@@ -89,17 +98,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Log.d(TAG, "onOptionsItemSelected: " + item.getTitle());
 
         checkBottomItemExist(item);
+        setTitle(item.getTitle());
         mNavController.navigate(item.getItemId());
 
         return super.onOptionsItemSelected(item);

@@ -6,7 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Items Title -->
     <string name="menu_home">home</string>
     <string name="menu_setting">Setting</string>
 
@@ -20,4 +20,11 @@
     <string name="menu_bond">Bond</string>
     <string name="menu_accountReceivable">Account Receivable</string>
     <string name="menu_accountPayable">Account Payable</string>
+
+    <!-- ***************************** -->
+    <string name="income_check">Check</string>
+    <string name="income_clear">Clear</string>
+    <string name="income_amount_hint">Amount...</string>
+    <string name="income_remark_hint">Remark...</string>
+
 </resources>
