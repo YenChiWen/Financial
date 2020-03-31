@@ -84,8 +84,10 @@
 
                 <Spinner
                     android:id="@+id/spinner_items_income"
-                    android:layout_width="430dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:splitMotionEvents="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -111,6 +113,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ListView
+                    android:id="@+id/listview_income"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
