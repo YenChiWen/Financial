@@ -1,18 +1,28 @@
 #side items
 	*home	(show Total assets)
-	*setting 
+	*setting
+	    - account
+	    - credit card
+	    - income items
+	    - expenses items
+
+        - exchange account
+        - stock account
+        - fund account
+        - bond account
 
 	*expenses
 		- date
 		- item 
 		- remark
 		- amount
-		- payment method (credit card / cash / transfer) 
+		- payment method (credit card / cash / account)
 	*income
 		- date
 		- item 
 		- remark
 		- amount
+		- method (cash / account)
 
 	*deposit
 		- Demand Deposits

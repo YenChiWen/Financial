@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import static com.example.Financial.R.id.nav_host_fragment;
+import static com.example.Financial.R.id.nav_view_bottom;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,9 +86,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Log.d(TAG, "bottomNavigationItemSelectedListener: " + item.getTitle());
 
+            // set Bundle
+            Bundle bundle = new Bundle();
+            bundle.putInt("ID", item.getItemId());
+            bundle.putString("TITLE", item.getTitle().toString());
+
+            //
             mBottomNavigationView.getMenu().setGroupCheckable(0, true, true);
             setTitle(item.getTitle());
-            mNavController.navigate(item.getItemId());
+            mNavController.navigate(item.getItemId(), bundle);
             item.setChecked(true);
 
             return false;

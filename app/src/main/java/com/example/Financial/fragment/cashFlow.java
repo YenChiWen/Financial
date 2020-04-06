@@ -25,8 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.Financial.R;
-import com.example.Financial.SwipeController;
-import com.example.Financial.SwipeControllerActions;
+import com.example.Financial.SwipeController.SwipeController;
+import com.example.Financial.SwipeController.SwipeControllerActions;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -37,8 +37,9 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class income extends Fragment {
+public class cashFlow extends Fragment {
     String TAG = this.getClass().getSimpleName();
+    int mId = -1;
     List<inComeInfo> mListIncomeInfo = new ArrayList<>();
     dataAdapter mDataAdapter = null;
 
@@ -50,24 +51,27 @@ public class income extends Fragment {
     EditText mEtRemark = null;
     EditText mEtAmount = null;
     Spinner mSpinnerItems = null;
+    Spinner mSpinnerMethod = null;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_income, container, false);
+        return inflater.inflate(R.layout.fragment_cash_flow, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        this.mId = this.getArguments().getInt("ID");
 
         // get view
+        this.mRecyclerView = getView().findViewById(R.id.recyclerview_cashFlow);
         this.mCalendarView = getView().findViewById(R.id.materialCalendarView);
-        this.mBtnCheck = getView().findViewById(R.id.btn_check_income);
-        this.mBtnClear = getView().findViewById(R.id.btn_clear_income);
-        this.mEtAmount = getView().findViewById(R.id.editText_amount_income);
-        this.mEtRemark = getView().findViewById(R.id.editText_remark_income);
-        this.mSpinnerItems = getView().findViewById(R.id.spinner_items_income);
-        this.mRecyclerView = getView().findViewById(R.id.recyclerview_income);
+        this.mBtnCheck = getView().findViewById(R.id.btn_check_cashFlow);
+        this.mBtnClear = getView().findViewById(R.id.btn_clear_cashFlow);
+        this.mEtAmount = getView().findViewById(R.id.editText_amount_cashFlow);
+        this.mEtRemark = getView().findViewById(R.id.editText_remark_cashFlow);
+        this.mSpinnerItems = getView().findViewById(R.id.spinner_items_cashFlow);
+        this.mSpinnerMethod = getView().findViewById(R.id.spinner_method_cashFlow);
 
         // set listener
         this.mCalendarView.setOnDateChangedListener(dateSelectedListener);
@@ -75,9 +79,10 @@ public class income extends Fragment {
         this.mBtnClear.setOnClickListener(btnClearListener);
 
         //
+        this.setCalendarView();
         this.setRecyclerView();
         this.setSpinnerItems();
-        this.setCalendarView();
+        this.setSpinnerMethod();
     }
 
     OnDateLongClickListener dateLongClickListener = new OnDateLongClickListener() {
@@ -103,6 +108,7 @@ public class income extends Fragment {
         @Override
         public void onClick(View view) {
             if (mSpinnerItems.getSelectedItem() == null || mSpinnerItems.getSelectedItem().toString().isEmpty() ||
+                    mSpinnerMethod.getSelectedItem() == null || mSpinnerMethod.getSelectedItem().toString().isEmpty() ||
                     mEtAmount.getText() == null || mEtAmount.getText().toString().isEmpty() ||
                     mEtRemark.getText() == null || mEtRemark.getText().toString().isEmpty()) {
                 Toast.makeText(getContext(), "Please key in full info.", Toast.LENGTH_LONG).show();
@@ -113,8 +119,9 @@ public class income extends Fragment {
             inComeInfo inComeInfo = new inComeInfo();
             inComeInfo.mDate = mCalendarView.getSelectedDate().getDate().toString();
             inComeInfo.mItem = mSpinnerItems.getSelectedItem().toString();
-            inComeInfo.mAmount = mEtAmount.getText().toString();
             inComeInfo.mRemark = mEtRemark.getText().toString();
+            inComeInfo.mMethod = mSpinnerMethod.getSelectedItem().toString();
+            inComeInfo.mAmount = mEtAmount.getText().toString();
             mListIncomeInfo.add(inComeInfo);
             mDataAdapter.refresh();
         }
@@ -128,6 +135,19 @@ public class income extends Fragment {
             mSpinnerItems.setSelection(0);
         }
     };
+
+    private void setSpinnerMethod(){
+        // TODO : load sql date to spinner items
+        String[] arraySpinner = new String[]{};
+        if(this.mId == R.id.nav_income){
+             arraySpinner = new String[]{"Income_method1", "Income_method2", "Income_method3"};
+        }
+        else if(this.mId == R.id.nav_expenses){
+            arraySpinner = new String[]{"Expenses_method1", "Expenses_method2", "Expenses_method3"};
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this.getContext(), R.layout.spinner, arraySpinner);
+        this.mSpinnerMethod.setAdapter(arrayAdapter);
+    }
 
     private void setSpinnerItems(){
         // TODO : load sql date to spinner items
@@ -162,16 +182,27 @@ public class income extends Fragment {
                 String amount = mDataAdapter.mList.get(position).mAmount;
                 String remark = mDataAdapter.mList.get(position).mRemark;
                 String item = mDataAdapter.mList.get(position).mItem;
+                String method = mDataAdapter.mList.get(position).mMethod;
 
                 mSpinnerItems.setSelection(0);
-                for(int i=0; i<mSpinnerItems.getCount(); i++)
-                    if(item.equals(mSpinnerItems.getItemAtPosition(i)))
+                for(int i=0; i<mSpinnerItems.getCount(); i++) {
+                    if (item.equals(mSpinnerItems.getItemAtPosition(i)))
                         mSpinnerItems.setSelection(i);
+                }
+                mSpinnerMethod.setSelection(0);
+                for(int i=0; i<mSpinnerMethod.getCount(); i++) {
+                    if (method.equals(mSpinnerMethod.getItemAtPosition(i)))
+                        mSpinnerMethod.setSelection(i);
+                }
                 mEtRemark.setText(remark);
                 mEtAmount.setText(amount);
 
                 // remove this listview
                 onRightClicked(position);
+
+                // set focus
+                mEtRemark.setFocusable(true);
+                mEtRemark.requestFocus();
             }
 
             @Override
@@ -198,8 +229,10 @@ public class income extends Fragment {
     private class inComeInfo{
         public String mDate;
         public String mItem;
-        public String mAmount;
         public String mRemark;
+        public String mMethod;
+        public String mAmount;
+
 
         public inComeInfo(){ }
     }
@@ -211,13 +244,14 @@ public class income extends Fragment {
         private Context mContext;
 
         class ViewHolder extends RecyclerView.ViewHolder{
-            TextView textviewItem, textviewAmount, textviewRemark;
+            TextView textviewItem, textviewRemark, textviewAmount, textviewMethod;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 this.textviewItem = itemView.findViewById(R.id.textView_item);
                 this.textviewAmount = itemView.findViewById(R.id.textView_amount);
                 this.textviewRemark = itemView.findViewById(R.id.textView_remark);
+                this.textviewMethod = itemView.findViewById(R.id.textView_method);
             }
         }
 
@@ -231,7 +265,7 @@ public class income extends Fragment {
         @NonNull
         @Override
         public dataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_income, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_cash_flow, parent, false);
             return new ViewHolder(view);
         }
 
@@ -241,6 +275,7 @@ public class income extends Fragment {
             holder.textviewItem.setText(inComeInfo.mItem);
             holder.textviewAmount.setText(inComeInfo.mAmount);
             holder.textviewRemark.setText(inComeInfo.mRemark);
+            holder.textviewMethod.setText(inComeInfo.mMethod);
         }
 
         @Override

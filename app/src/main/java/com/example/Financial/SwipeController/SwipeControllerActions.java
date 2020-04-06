@@ -1,4 +1,4 @@
-package com.example.Financial;
+package com.example.Financial.SwipeController;
 
 public class SwipeControllerActions{
     public void onLeftClicked(int position) {

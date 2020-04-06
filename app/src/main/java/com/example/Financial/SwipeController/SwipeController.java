@@ -1,11 +1,9 @@
-package com.example.Financial;
+package com.example.Financial.SwipeController;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -13,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.example.Financial.SwipeController.ButtonStatus.GONE;
-import static com.example.Financial.SwipeController.ButtonStatus.LEFT_VISIBLE;
-import static com.example.Financial.SwipeController.ButtonStatus.RIGHT_VISIBLE;
+import static com.example.Financial.SwipeController.SwipeController.ButtonStatus.GONE;
+import static com.example.Financial.SwipeController.SwipeController.ButtonStatus.LEFT_VISIBLE;
+import static com.example.Financial.SwipeController.SwipeController.ButtonStatus.RIGHT_VISIBLE;
 
 public class SwipeController extends ItemTouchHelper.Callback {
     // https://codeburst.io/android-swipe-menu-with-recyclerview-8f28a235ff28
@@ -169,14 +167,14 @@ public class SwipeController extends ItemTouchHelper.Callback {
         if(this.mLeftButtonEdit != null){
             p.setColor(Color.BLUE);
             c.drawRoundRect(leftButton, corners, corners, p);
-            drawText("EDIT", c, leftButton, p);
+            drawText(this.mLeftButtonEdit, c, leftButton, p);
         }
 
         RectF rightButton = new RectF(itemView.getRight()-buttonWidth, itemView.getTop(), itemView.getRight()-5, itemView.getBottom());
         if(this.mRightButtonEdit != null){
             p.setColor(Color.RED);
             c.drawRoundRect(rightButton, corners, corners, p);
-            drawText("DELETE", c, rightButton, p);
+            drawText(this.mRightButtonEdit, c, rightButton, p);
         }
 
         buttonInstance = null;

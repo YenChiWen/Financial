@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.income">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.cashFlow">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +13,8 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,63 +32,63 @@
                     app:mcv_showOtherDates="all" />
 
                 <LinearLayout
-                    android:id="@+id/layout_view_income"
+                    android:id="@+id/layout_view_cashFlow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_add_income"
+                        android:id="@+id/layout_add_cashFlow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <Button
-                            android:id="@+id/btn_check_income"
+                            android:id="@+id/btn_check_cashFlow"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/income_check"
+                            android:text="@string/cashFlow_check"
                             app:layout_constraintEnd_toStartOf="@+id/guideline2"
                             app:layout_constraintHorizontal_bias="0.299"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/editText_remark_income" />
+                            app:layout_constraintTop_toBottomOf="@+id/editText_remark_cashFlow" />
 
                         <Button
-                            android:id="@+id/btn_clear_income"
+                            android:id="@+id/btn_clear_cashFlow"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@string/income_clear"
+                            android:text="@string/cashFlow_clear"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/guideline2"
-                            app:layout_constraintTop_toTopOf="@+id/btn_check_income" />
+                            app:layout_constraintTop_toTopOf="@+id/btn_check_cashFlow" />
 
                         <EditText
-                            android:id="@+id/editText_amount_income"
+                            android:id="@+id/editText_amount_cashFlow"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:autofillHints="@string/income_amount_hint"
+                            android:autofillHints="@string/cashFlow_amount_hint"
                             android:ems="10"
-                            android:hint="@string/income_amount_hint"
+                            android:hint="@string/cashFlow_amount_hint"
                             android:inputType="number"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/spinner_items_income"
+                            app:layout_constraintTop_toBottomOf="@id/spinner_method_cashFlow"
                             tools:targetApi="o" />
 
                         <EditText
-                            android:id="@+id/editText_remark_income"
+                            android:id="@+id/editText_remark_cashFlow"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:autofillHints="@string/income_remark_hint"
+                            android:autofillHints="@string/cashFlow_remark_hint"
                             android:ems="10"
-                            android:hint="@string/income_remark_hint"
+                            android:hint="@string/cashFlow_remark_hint"
                             android:inputType="textPersonName"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/editText_amount_income"
+                            app:layout_constraintTop_toBottomOf="@+id/editText_amount_cashFlow"
                             tools:targetApi="o" />
 
                         <Spinner
-                            android:id="@+id/spinner_items_income"
+                            android:id="@+id/spinner_items_cashFlow"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:spinnerMode="dropdown"
@@ -95,6 +96,15 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <Spinner
+                            android:id="@+id/spinner_method_cashFlow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/spinner_items_cashFlow" />
 
                         <androidx.constraintlayout.widget.Guideline
                             android:id="@+id/guideline2"
@@ -113,28 +123,28 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_cashFlow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        android:scrollbarAlwaysDrawVerticalTrack="true" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_income"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_marginBottom="1dp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
