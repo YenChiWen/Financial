@@ -2,17 +2,16 @@ package com.example.Financial.fragment;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.Financial.R;
 import com.example.Financial.SwipeController;
+import com.example.Financial.SwipeControllerActions;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -37,7 +37,6 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class income extends Fragment {
     String TAG = this.getClass().getSimpleName();
     List<inComeInfo> mListIncomeInfo = new ArrayList<>();
@@ -154,7 +153,35 @@ public class income extends Fragment {
         this.mRecyclerView.setAdapter(mDataAdapter);
 
         // set recyclerview event
-        final SwipeController swipeController = new SwipeController();
+        final SwipeController swipeController = new SwipeController(new SwipeControllerActions() {
+            @Override
+            public void onLeftClicked(int position) {
+                Log.d(TAG, "onLeftClicked: ");
+
+                // set this listview to edit
+                String amount = mDataAdapter.mList.get(position).mAmount;
+                String remark = mDataAdapter.mList.get(position).mRemark;
+                String item = mDataAdapter.mList.get(position).mItem;
+
+                mSpinnerItems.setSelection(0);
+                for(int i=0; i<mSpinnerItems.getCount(); i++)
+                    if(item.equals(mSpinnerItems.getItemAtPosition(i)))
+                        mSpinnerItems.setSelection(i);
+                mEtRemark.setText(remark);
+                mEtAmount.setText(amount);
+
+                // remove this listview
+                onRightClicked(position);
+            }
+
+            @Override
+            public void onRightClicked(int position) {
+                Log.d(TAG, "onRightClicked: ");
+
+                mDataAdapter.mList.remove(position);
+                mDataAdapter.refresh();
+            }
+        }, "EDIT", "REMOVE");
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
         itemTouchHelper.attachToRecyclerView(this.mRecyclerView);
 
@@ -180,7 +207,7 @@ public class income extends Fragment {
     // =================================================================
 
     private class dataAdapter extends RecyclerView.Adapter<dataAdapter.ViewHolder>{
-        List<inComeInfo> mList;
+        public List<inComeInfo> mList;
         private Context mContext;
 
         class ViewHolder extends RecyclerView.ViewHolder{

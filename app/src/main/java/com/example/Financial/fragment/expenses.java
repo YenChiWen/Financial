@@ -11,15 +11,11 @@ import androidx.fragment.app.Fragment;
 import com.example.Financial.R;
 
 public class expenses extends Fragment {
-
-    public expenses(){
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_expenses, container, false);
     }
+
+
 }
