@@ -1,5 +1,4 @@
-package com.example.Financial;
-
+package com.example.Financial.fragment;
 
 import android.os.Bundle;
 
@@ -11,13 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class account_payable extends Fragment {
-    public account_payable(){
+import com.example.Financial.R;
+
+public class fund extends Fragment {
+    public fund(){
 
     }
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_account_payable, container, false);
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fund, container, false);
     }
 }

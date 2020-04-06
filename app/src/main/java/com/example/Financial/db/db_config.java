@@ -1,4 +1,4 @@
-package com.example.Financial.ui;
+package com.example.Financial.db;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;

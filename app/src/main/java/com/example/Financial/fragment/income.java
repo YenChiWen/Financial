@@ -1,6 +1,7 @@
-package com.example.Financial;
+package com.example.Financial.fragment;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,15 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.Financial.R;
+import com.example.Financial.SwipeController;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -73,14 +75,10 @@ public class income extends Fragment {
         this.mBtnCheck.setOnClickListener(btnCheckListener);
         this.mBtnClear.setOnClickListener(btnClearListener);
 
-        // set list view
-        mDataAdapter = new dataAdapter(this.getContext(), this.mListIncomeInfo);
-        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        this.mRecyclerView.setAdapter(mDataAdapter);
-
         //
-        setSpinnerItems();
-        setCalendarView();
+        this.setRecyclerView();
+        this.setSpinnerItems();
+        this.setCalendarView();
     }
 
     OnDateLongClickListener dateLongClickListener = new OnDateLongClickListener() {
@@ -149,6 +147,25 @@ public class income extends Fragment {
         this.mCalendarView.setOnDateLongClickListener(dateLongClickListener);
     }
 
+    private void setRecyclerView(){
+        // set adapter
+        mDataAdapter = new dataAdapter(this.getContext(), this.mListIncomeInfo);
+        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        this.mRecyclerView.setAdapter(mDataAdapter);
+
+        // set recyclerview event
+        final SwipeController swipeController = new SwipeController();
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeController);
+        itemTouchHelper.attachToRecyclerView(this.mRecyclerView);
+
+        this.mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                swipeController.onDraw(c);
+            }
+        });
+    }
+
     // =================================================================
 
     private class inComeInfo{
@@ -163,8 +180,6 @@ public class income extends Fragment {
     // =================================================================
 
     private class dataAdapter extends RecyclerView.Adapter<dataAdapter.ViewHolder>{
-        // https://codeburst.io/android-swipe-menu-with-recyclerview-8f28a235ff28
-
         List<inComeInfo> mList;
         private Context mContext;
 
@@ -195,7 +210,7 @@ public class income extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull dataAdapter.ViewHolder holder, int position) {
-            inComeInfo inComeInfo = this.mList.get(position);
+            inComeInfo inComeInfo = mList.get(position);
             holder.textviewItem.setText(inComeInfo.mItem);
             holder.textviewAmount.setText(inComeInfo.mAmount);
             holder.textviewRemark.setText(inComeInfo.mRemark);

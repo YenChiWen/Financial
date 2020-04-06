@@ -1,7 +1,5 @@
-package com.example.Financial;
+package com.example.Financial.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,15 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class fund extends Fragment {
-    public fund(){
+import com.example.Financial.R;
+
+public class account_receivable extends Fragment {
+    public account_receivable(){
 
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fund, container, false);
+        return inflater.inflate(R.layout.fragment_account_receivable, container, false);
     }
 }
