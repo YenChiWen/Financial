@@ -1,0 +1,82 @@
+# Setting
+	## account (name)
+		- id 
+		- name	(string)
+		- application	(string)
+	## expenses_items
+		- item 	(string)
+		- fixed	(bool)
+	## income_items
+		- item 	(string)
+
+# Income
+	- date
+	- item
+	- amount
+	- remark 
+# Expenses
+	- date
+	- item
+	- amount
+	- method
+	- remark
+	
+
+# Deposit
+	## Demand Deposits
+		- date
+		- account
+		- amount
+		- interest
+	## Time Deposits
+		- date
+		- account
+		- amount
+		- interest
+		- period
+		- method
+# Exchange
+	## Exchange Cash 
+		- date
+		- account
+		- currency
+		- amount
+		- rate
+	## Exchange Spot
+		### Demand Deposits
+			- date
+			- account
+			- currency 
+			- amount
+			- rate
+			- interest
+		### Time Deposits
+			- date
+			- account
+			- currency 
+			- amount
+			- rate
+			- interest
+			-* period
+			-* method
+# Stock
+	- date
+	- account 
+	- company code 
+	- company name
+	- number of shares
+	- price
+# Fund
+# Bond
+# Account Receivable
+	- date
+	- currency
+	- amount
+	- remark
+	- expected collection date
+# Account Payable
+	- date
+	- currency
+	- amount
+	- remark
+	- expected payment date

@@ -1,0 +1,129 @@
+#side items
+	*home	(show Total assets)
+	*setting 
+
+	*expenses
+		- date
+		- item 
+		- remark
+		- amount
+		- payment method (credit card / cash / transfer) 
+	*income
+		- date
+		- item 
+		- remark
+		- amount
+
+	*deposit
+		- Demand Deposits
+			- date
+			- account 
+			- amount
+			- interest
+		- Time Deposits
+			- date
+			- account 
+			- amount
+			- interest
+			-* period
+			-* method
+	*exchange
+		- cash
+			- date
+			- account
+			- currency
+			- amount
+			- rate
+			- currently self rate (dynamic show)
+		- Spot
+			- Demand Deposits
+				- date
+				- account
+				- currency 
+				- amount
+				- rate
+				- interest
+				- currently self rate (dynamic show)
+			- Time Deposits
+				- date
+				- account
+				- currency 
+				- amount
+				- rate
+				- interest
+				-* period
+				-* method
+				- currently self rate (dynamic show)
+	*stock
+		- date
+		- account 
+		- company code 
+		- company name
+		- number of shares
+		- price
+		- breakeven price (dynamic show)
+	*fund
+	*bond
+	*account receivable
+		- date
+		- currency
+		- amount
+		- remark
+		- expected collection date
+	*account payable
+		- date
+		- currency
+		- amount
+		- remark
+		- expected payment date
+#bottom items
+	*home (show Total assets)
+	*expenses
+	*income
+
+
+
+database
+	- cash flow (expenses / income)
+		- date
+		- item
+		- currency 
+		- amount
+		- remark
+		- payment method (credit card / cash)
+	- deposit
+		- date
+		- account
+		- amount
+		- Demand/Time Deposits
+		- interest
+		- interest date
+	- exchange
+
+
+================================================
+
+# cash flow 
+	- expenses	支出
+	- income	收入
+
+# assets
+	- deposit	存款
+		- Time Deposits		定期存款
+		- Demand Deposits	活期存款
+
+	- exchange 	外匯
+		- cash	現鈔
+		- Spot Time Deposits 	即期-定期存款
+		- Spot Demand Deposits	即期-活期存款
+		- buying rate 	買入匯率
+		- selling rate	賣出匯率	
+
+	- stock		股票
+		- Margin Trading 融資
+		- Short Selling 融卷		
+
+	- fund		基金
+	- bond		債券
+	- account receivable	應收帳款
+	- account payable		應負帳款
