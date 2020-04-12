@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="editText_otherMethod_cashFlow" type="id" />
+    <item name="editText_otherItems_cashFlow" type="id" />
+    <item name="btn_check_cashFlow" type="id" />
+    <item name="guideline4" type="id" />
+    <item name="guideline6" type="id" />
+    <item name="guideline8" type="id" />
+
+    <item name="recyclerview_cashFlow" type="id" />
+    <item name="materialCalendarView" type="id" />
+    <item name="btn_clear_cashFlow" type="id" />
+    <item name="editText_amount_cashFlow" type="id" />
+    <item name="editText_remark_cashFlow" type="id" />
+    <item name="spinner_items_cashFlow" type="id" />
+    <item name="spinner_method_cashFlow" type="id" />
+</resources>

@@ -11,18 +11,12 @@
         - fund account
         - bond account
 
-	*expenses
+	*expenses & income
 		- date
 		- item 
 		- remark
 		- amount
 		- payment method (credit card / cash / account)
-	*income
-		- date
-		- item 
-		- remark
-		- amount
-		- method (cash / account)
 
 	*deposit
 		- Demand Deposits
@@ -74,18 +68,12 @@
 		- breakeven price (dynamic show)
 	*fund
 	*bond
-	*account receivable
+	*account receivable && payable
 		- date
 		- currency
 		- amount
 		- remark
-		- expected collection date
-	*account payable
-		- date
-		- currency
-		- amount
-		- remark
-		- expected payment date
+		- expected collection/payment date
 #bottom items
 	*home (show Total assets)
 	*expenses

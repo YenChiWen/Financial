@@ -53,14 +53,14 @@
         tools:layout="@layout/fragment_bond" />
     <fragment
         android:id="@+id/nav_account_receivable"
-        android:name="com.example.Financial.fragment.account_receivable"
+        android:name="com.example.Financial.fragment.account_receivable_payable"
         android:label="fragment_account_receivable"
-        tools:layout="@layout/fragment_account_receivable" />
+        tools:layout="@layout/fragment_account_receivable_payable" />
     <fragment
         android:id="@+id/nav_account_payable"
-        android:name="com.example.Financial.fragment.account_payable"
+        android:name="com.example.Financial.fragment.account_receivable_payable"
         android:label="fragment_account_payable"
-        tools:layout="@layout/fragment_account_payable" />
+        tools:layout="@layout/fragment_account_receivable_payable" />
     <fragment
         android:id="@+id/nav_setting"
         android:name="com.example.Financial.fragment.setting"
