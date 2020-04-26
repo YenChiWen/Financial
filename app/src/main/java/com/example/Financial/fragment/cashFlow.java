@@ -41,7 +41,7 @@ import java.util.List;
 public class cashFlow extends Fragment {
     private String TAG = this.getClass().getSimpleName();
     private int mId = -1;
-    private List<inComeInfo> mListIncomeInfo = new ArrayList<>();
+    private List<infoIncome> mListIncomeInfo = new ArrayList<>();
     private dataAdapter mDataAdapter = null;
 
     // View
@@ -80,21 +80,18 @@ public class cashFlow extends Fragment {
             this.mEtOtherMethod = getView().findViewById(R.id.editText_otherMethod_cashFlow);
 
             // set listener
-            this.mCalendarView.setOnDateChangedListener(dateSelectedListener);
-            this.mSpinnerItems.setOnItemSelectedListener(onItemSelectedListener);
-            this.mSpinnerMethod.setOnItemSelectedListener(onItemSelectedListener);
-            mBtnCheck.setOnClickListener(btnCheckListener);
-            mBtnClear.setOnClickListener(btnClearListener);
-        }
+            mBtnCheck.setOnClickListener(clickListener_Check);
+            mBtnClear.setOnClickListener(clickListener_Clear);
 
-        //
-        this.setCalendarView();
-        this.setRecyclerView();
-        this.setSpinnerItems();
-        this.setSpinnerMethod();
+            //
+            this.setCalendarView();
+            this.setRecyclerView();
+            this.setSpinnerItems();
+            this.setSpinnerMethod();
+        }
     }
 
-    private OnDateLongClickListener dateLongClickListener = new OnDateLongClickListener() {
+    private OnDateLongClickListener longClickListener_Date = new OnDateLongClickListener() {
         @Override
         public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
             if( widget.getCalendarMode().equals(CalendarMode.MONTHS) )
@@ -104,20 +101,26 @@ public class cashFlow extends Fragment {
         }
     };
 
-    private OnDateSelectedListener dateSelectedListener = new OnDateSelectedListener() {
+    private OnDateSelectedListener dateSelectedListener_Date = new OnDateSelectedListener() {
         @Override
         public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+            // set calendar view as one week only
+            if(!mCalendarView.getCalendarMode().equals(CalendarMode.WEEKS))
+                mCalendarView.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
+
             // TODO : show SQL data as listview
             mListIncomeInfo.clear();
             mDataAdapter.refresh();
         }
     };
 
-    private final View.OnClickListener btnCheckListener = new View.OnClickListener() {
+    private final View.OnClickListener clickListener_Check = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (mSpinnerItems.getSelectedItem() == null || mSpinnerItems.getSelectedItem().toString().isEmpty() ||
+            if (    mSpinnerItems.getSelectedItem() == null || mSpinnerItems.getSelectedItem().toString().isEmpty() ||
+                    (mSpinnerItems.getSelectedItem().equals("Others") && (mEtOtherItems.getText() == null || mEtOtherItems.getText().toString().isEmpty())) ||
                     mSpinnerMethod.getSelectedItem() == null || mSpinnerMethod.getSelectedItem().toString().isEmpty() ||
+                    (mSpinnerMethod.getSelectedItem().equals("Others") && (mEtOtherMethod.getText() == null || mEtOtherMethod.getText().toString().isEmpty())) ||
                     mEtAmount.getText() == null || mEtAmount.getText().toString().isEmpty() ||
                     mEtRemark.getText() == null || mEtRemark.getText().toString().isEmpty()) {
                 Toast.makeText(getContext(), "Please key in full info.", Toast.LENGTH_LONG).show();
@@ -125,29 +128,23 @@ public class cashFlow extends Fragment {
             }
 
             // TODO : add data to SQL
-            inComeInfo inComeInfo = new inComeInfo();
+            infoIncome inComeInfo = new infoIncome();
             inComeInfo.mDate = mCalendarView.getSelectedDate().getDate().toString();
             inComeInfo.mItem = mSpinnerItems.getSelectedItem().toString();
             inComeInfo.mRemark = mEtRemark.getText().toString();
             inComeInfo.mMethod = mSpinnerMethod.getSelectedItem().toString();
             inComeInfo.mAmount = mEtAmount.getText().toString();
-
-            if(mEtOtherItems.getText().toString() != null && !mEtOtherItems.getText().toString().isEmpty()){
-                // TODO : add item to SQL
+            if(inComeInfo.mItem.equals("Others"))
                 inComeInfo.mItem = mEtOtherItems.getText().toString();
-            }
-
-            if(mEtOtherMethod.getText().toString() != null && !mEtOtherMethod.getText().toString().isEmpty()){
-                // TODO : add method to SQL
+            if(inComeInfo.mMethod.equals("Others"))
                 inComeInfo.mMethod = mEtOtherMethod.getText().toString();
-            }
 
             mListIncomeInfo.add(inComeInfo);
             mDataAdapter.refresh();
         }
     };
 
-    private View.OnClickListener btnClearListener = new View.OnClickListener() {
+    private View.OnClickListener clickListener_Clear = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             mEtAmount.getText().clear();
@@ -156,28 +153,22 @@ public class cashFlow extends Fragment {
         }
     };
 
-    private Spinner.OnItemSelectedListener onItemSelectedListener = new Spinner.OnItemSelectedListener(){
+    private Spinner.OnItemSelectedListener selectedListener_Item_Method = new Spinner.OnItemSelectedListener(){
         @Override
         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
             Log.d(TAG, "onItemSelected: ");
             if(adapterView.getId() == R.id.spinner_items_cashFlow){
-                if(adapterView.getSelectedItem().toString().equals("Others")){
-                    Log.d(TAG, "onItemSelected: items");
+                if(adapterView.getSelectedItem().toString().equals("Others"))
                     mEtOtherItems.setEnabled(true);
-                }
-                else{
+                else
                     mEtOtherItems.setEnabled(false);
-                }
             }
 
             if(adapterView.getId() == R.id.spinner_method_cashFlow){
-                if(adapterView.getSelectedItem().toString().equals("Others")){
-                    Log.d(TAG, "onItemSelected: method");
+                if(adapterView.getSelectedItem().toString().equals("Others"))
                     mEtOtherMethod.setEnabled(true);
-                }
-                else{
+                else
                     mEtOtherMethod.setEnabled(false);
-                }
             }
         }
 
@@ -188,6 +179,9 @@ public class cashFlow extends Fragment {
     };
 
     private void setSpinnerMethod(){
+        // set listener
+        this.mSpinnerMethod.setOnItemSelectedListener(selectedListener_Item_Method);
+
         // TODO : load sql date to spinner items
         String[] arraySpinner = new String[]{};
         if(this.mId == R.id.nav_income){
@@ -201,6 +195,9 @@ public class cashFlow extends Fragment {
     }
 
     private void setSpinnerItems(){
+        // set listener
+        this.mSpinnerItems.setOnItemSelectedListener(selectedListener_Item_Method);
+
         // TODO : load sql date to spinner items
         String[] arraySpinner = new String[]{"test1", "test2", "test3", "Others"};
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this.getContext(), R.layout.spinner, arraySpinner);
@@ -208,13 +205,15 @@ public class cashFlow extends Fragment {
     }
 
     private void setCalendarView(){
+        // set listener
+        this.mCalendarView.setOnDateChangedListener(dateSelectedListener_Date);
+        this.mCalendarView.setOnDateLongClickListener(longClickListener_Date);
+
         // set current date
         this.mCalendarView.setSelectedDate(this.mCalendarView.getCurrentDate());
 
         // set calendar view as one week only
         this.mCalendarView.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
-
-        this.mCalendarView.setOnDateLongClickListener(dateLongClickListener);
     }
 
     private void setRecyclerView(){
@@ -235,11 +234,13 @@ public class cashFlow extends Fragment {
                 String item = mDataAdapter.mList.get(position).mItem;
                 String method = mDataAdapter.mList.get(position).mMethod;
 
+                mEtOtherItems.setText("");
                 mSpinnerItems.setSelection(0);
                 for(int i=0; i<mSpinnerItems.getCount(); i++) {
                     if (item.equals(mSpinnerItems.getItemAtPosition(i)))
                         mSpinnerItems.setSelection(i);
                 }
+                mEtOtherMethod.setText("");
                 mSpinnerMethod.setSelection(0);
                 for(int i=0; i<mSpinnerMethod.getCount(); i++) {
                     if (method.equals(mSpinnerMethod.getItemAtPosition(i)))
@@ -260,6 +261,7 @@ public class cashFlow extends Fragment {
             public void onRightClicked(int position) {
                 Log.d(TAG, "onRightClicked: ");
 
+                // TODO : remove form SQL
                 mDataAdapter.mList.remove(position);
                 mDataAdapter.refresh();
             }
@@ -277,19 +279,19 @@ public class cashFlow extends Fragment {
 
     // =================================================================
 
-    private static class inComeInfo{
+    private static class infoIncome {
         String mDate;
         String mItem;
         String mRemark;
         String mMethod;
         String mAmount;
-        inComeInfo(){ }
+        infoIncome(){}
     }
 
     // =================================================================
 
     private static class dataAdapter extends RecyclerView.Adapter<dataAdapter.ViewHolder>{
-        List<inComeInfo> mList;
+        List<infoIncome> mList;
         private Context mContext;
 
         static class ViewHolder extends RecyclerView.ViewHolder{
@@ -304,7 +306,7 @@ public class cashFlow extends Fragment {
             }
         }
 
-        dataAdapter(Context context, List<inComeInfo> list) {
+        dataAdapter(Context context, List<infoIncome> list) {
             super();
 
             this.mList = list;
@@ -320,7 +322,7 @@ public class cashFlow extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull dataAdapter.ViewHolder holder, int position) {
-            inComeInfo inComeInfo = mList.get(position);
+            infoIncome inComeInfo = mList.get(position);
             holder.textviewItem.setText(inComeInfo.mItem);
             holder.textviewAmount.setText(inComeInfo.mAmount);
             holder.textviewRemark.setText(inComeInfo.mRemark);

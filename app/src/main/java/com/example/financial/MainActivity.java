@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
             // set bottom nav checked
             checkBottomItemExist(item);
 
+            // set Bundle
+            Bundle bundle = new Bundle();
+            bundle.putInt("ID", item.getItemId());
+            bundle.putString("TITLE", item.getTitle().toString());
+
             mNavController.navigate(item.getItemId());
             setTitle(item.getTitle());
             DrawerLayout drawer = findViewById(R.id.drawer_layout);

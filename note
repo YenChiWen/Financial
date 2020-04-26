@@ -1,5 +1,25 @@
 #side items
+    *expenses & income
+    		- date
+    		- item
+    		- remark
+    		- amount
+    		- payment method (credit card / cash / account)
+
+    *account receivable && payable
+    		- date
+    		- currency
+    		- amount
+    		- remark
+    		- expected collection/payment date
+
+
+
+
+
 	*home	(show Total assets)
+	*fund
+    *bond
 	*setting
 	    - account
 	    - credit card
@@ -10,14 +30,6 @@
         - stock account
         - fund account
         - bond account
-
-	*expenses & income
-		- date
-		- item 
-		- remark
-		- amount
-		- payment method (credit card / cash / account)
-
 	*deposit
 		- Demand Deposits
 			- date
@@ -66,14 +78,8 @@
 		- number of shares
 		- price
 		- breakeven price (dynamic show)
-	*fund
-	*bond
-	*account receivable && payable
-		- date
-		- currency
-		- amount
-		- remark
-		- expected collection/payment date
+
+
 #bottom items
 	*home (show Total assets)
 	*expenses
