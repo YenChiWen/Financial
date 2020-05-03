@@ -147,12 +147,17 @@ public class account_receivable_payable extends Fragment {
     }
 
     private void buildDialog(){
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
         // Date
         this.mButtonDateStart.setOnClickListener(clickListener_date);
         this.mButtonDateStart.setHint("Start Date ...");
 
         // Currency
         LinearLayout subLayoutCurrency = new LinearLayout(getContext());
+        subLayoutCurrency.setLayoutParams(layoutParams);
         subLayoutCurrency.setOrientation(LinearLayout.HORIZONTAL);
         this.mSpinnerCurrency.setOnItemSelectedListener(selectedListener_Currency);
         // TODO : load sql date to spinner items
@@ -161,6 +166,7 @@ public class account_receivable_payable extends Fragment {
         this.mSpinnerCurrency.setAdapter(arrayAdapter);
         this.mSpinnerCurrency.setSelection(0);
         //
+        this.mEditTextCurrency.setLayoutParams(layoutParams);
         this.mEditTextCurrency.setEnabled(false);
         this.mEditTextCurrency.setHint("Others ...");
         subLayoutCurrency.addView(this.mSpinnerCurrency);

@@ -10,6 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_plus_cashFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_plus_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
@@ -33,163 +45,19 @@
 
                 </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_cashFlow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/editText_otherItems_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:autofillHints=""
-                            android:enabled="false"
-                            android:hint="@string/otherItemsHint_cashFlow"
-                            android:inputType="textPersonName"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/guideline4"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <Spinner
-                            android:id="@+id/spinner_items_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:spinnerMode="dropdown"
-                            android:splitMotionEvents="false"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/editText_otherItems_cashFlow"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.Guideline
-                            android:id="@+id/guideline4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="206dp"
-                            android:layout_marginLeft="206dp"
-                            android:layout_marginEnd="205dp"
-                            android:layout_marginRight="205dp"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintGuide_percent="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Spinner
-                            android:id="@+id/spinner_method_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/editText_otherMethod_cashFlow"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <EditText
-                            android:id="@+id/editText_otherMethod_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:autofillHints=""
-                            android:ems="10"
-                            android:enabled="false"
-                            android:hint="@string/otherMethodHint_cashFlow"
-                            android:inputType="textPersonName"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/guideline6"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.Guideline
-                            android:id="@+id/guideline6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            app:layout_constraintGuide_percent="0.5" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <EditText
-                        android:id="@+id/editText_amount_cashFlow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="@string/cashFlow_amount_hint"
-                        android:ems="10"
-                        android:hint="@string/cashFlow_amount_hint"
-                        android:inputType="number"
-                        tools:targetApi="o" />
-
-                    <EditText
-                        android:id="@+id/editText_remark_cashFlow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="@string/cashFlow_remark_hint"
-                        android:ems="10"
-                        android:hint="@string/cashFlow_remark_hint"
-                        android:inputType="textPersonName"
-                        tools:targetApi="o" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btn_clear_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cashFlow_clear"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/btn_check_cashFlow"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <Button
-                            android:id="@+id/btn_check_cashFlow"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="@string/cashFlow_check"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/guideline8"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.0" />
-
-                        <androidx.constraintlayout.widget.Guideline
-                            android:id="@+id/guideline8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="206dp"
-                            android:layout_marginLeft="206dp"
-                            android:orientation="vertical"
-                            app:layout_constraintGuide_percent="0.5"
-                            app:layout_constraintStart_toStartOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerview_cashFlow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginTop="1dp"
-                        android:layout_marginEnd="1dp"
-                        android:layout_marginRight="1dp"
-                        android:layout_marginBottom="1dp"
-                        android:clipToPadding="false"
-                        android:overScrollMode="never"
-                        android:scrollbarAlwaysDrawVerticalTrack="true" />
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:scrollbarAlwaysDrawVerticalTrack="true" />
 
             </LinearLayout>
         </ScrollView>
