@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             bundle.putInt("ID", item.getItemId());
             bundle.putString("TITLE", item.getTitle().toString());
 
-            mNavController.navigate(item.getItemId());
+            mNavController.navigate(item.getItemId(), bundle);
             setTitle(item.getTitle());
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
