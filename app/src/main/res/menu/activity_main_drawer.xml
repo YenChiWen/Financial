@@ -45,11 +45,13 @@
 
             <item
                 android:id="@+id/nav_fund"
+                android:enabled="false"
                 android:icon="@drawable/ic_orion_coins"
                 android:title="@string/menu_fund" />
 
             <item
                 android:id="@+id/nav_bond"
+                android:enabled="false"
                 android:icon="@drawable/ic_orion_invoice"
                 android:title="@string/menu_bond" />
 

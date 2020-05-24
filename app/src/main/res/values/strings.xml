@@ -31,5 +31,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="otherMethodHint_cashFlow">other method ...</string>
     <string name="otherItemsHint_cashFlow">other items ...</string>
+    <string name="spot_time_deposits">Spot Time Deposits</string>
+    <string name="spot_demand_deposits">Spot Demand Deposits</string>
+    <string name="cash">Cash</string>
 
 </resources>

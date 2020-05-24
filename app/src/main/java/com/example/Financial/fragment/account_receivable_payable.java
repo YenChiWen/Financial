@@ -101,6 +101,7 @@ public class account_receivable_payable extends Fragment {
 
                 // set views in dialog
                 initDialog();
+                buildDialog();
                 mSpinnerCurrency.setSelection(0);
                 for(int i=0; i<mSpinnerCurrency.getCount(); i++){
                     if(currancy.equals(mSpinnerCurrency.getItemAtPosition(i)))
@@ -113,7 +114,6 @@ public class account_receivable_payable extends Fragment {
 
                 // remove this listview
                 onRightClicked(position);
-                buildDialog();
             }
 
             @Override

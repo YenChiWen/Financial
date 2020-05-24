@@ -331,6 +331,7 @@ public class cashFlow extends Fragment {
 
                 // set views in dialog
                 initDialog();
+                buildDialog();
                 mSpinnerItems.setSelection(0);
                 for(int i=0; i<mSpinnerItems.getCount(); i++){
                     if(item.equals(mSpinnerItems.getItemAtPosition(i)))
@@ -346,7 +347,6 @@ public class cashFlow extends Fragment {
 
                 // remove this listview
                 onRightClicked(position);
-                buildDialog();
             }
 
             @Override

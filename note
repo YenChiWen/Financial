@@ -15,6 +15,35 @@
 
 
 
+    *exchange
+    		- cash
+    			- date
+    			- account
+    			- currency
+    			- amount
+    			- rate
+    			- currently self rate (dynamic show, edit page only)
+    		- Spot
+    			- Demand Deposits
+    				- date
+    				- account
+    				- currency
+    				- amount
+    				- rate
+    				- currently self rate (dynamic show, edit page only)
+    			- Time Deposits
+    				- date
+    				- account
+    				- currency
+    				- amount
+    				- rate
+    				-* period
+    				-* expiry date
+    				-* method
+    				- currently self rate (dynamic show, edit page)
+
+
+
 
 
 	*home	(show Total assets)
@@ -27,6 +56,7 @@
 	    - expenses items
 
         - exchange account
+            - current rate (to compute interest)
         - stock account
         - fund account
         - bond account
@@ -43,33 +73,6 @@
 			- interest
 			-* period
 			-* method
-	*exchange
-		- cash
-			- date
-			- account
-			- currency
-			- amount
-			- rate
-			- currently self rate (dynamic show)
-		- Spot
-			- Demand Deposits
-				- date
-				- account
-				- currency 
-				- amount
-				- rate
-				- interest
-				- currently self rate (dynamic show)
-			- Time Deposits
-				- date
-				- account
-				- currency 
-				- amount
-				- rate
-				- interest
-				-* period
-				-* method
-				- currently self rate (dynamic show)
 	*stock
 		- date
 		- account 
